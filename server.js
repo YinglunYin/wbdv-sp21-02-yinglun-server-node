@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const PORT = process.env.PORT || 3002
 
 app.use(function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -14,4 +15,4 @@ require('./controllers/quizzes-controller')(app)
 require('./controllers/question-controller')(app)
 
 
-app.listen(3002);
+app.listen(PORT);
