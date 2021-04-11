@@ -11,8 +11,17 @@ app.use(function (req, res, next) {
     next();
 });
 
-require('./controllers/quizzes-controller')(app)
+var bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded({ extended: false }))
+app.use(bodyParser.json())
 require('./controllers/question-controller')(app)
+require('./controllers/quizzes-controller')(app)
+require('./controllers/quiz-attempts-controller')(app)
+
+const mongoose = require('mongoose');
+
+mongoose.connect("mongodb+srv://user123:user123@cluster0.ajbuj.mongodb.net/cs5610?retryWrites=true&w=majority",
+                 {useNewUrlParser: true ,useUnifiedTopology: true});
 
 
 app.listen(PORT);
